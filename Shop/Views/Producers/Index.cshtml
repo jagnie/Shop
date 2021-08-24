@@ -18,26 +18,26 @@
         {
             @Html.ActionLink("Dodaj Producenta", "Create", null, new { @class = "btn btn-primary btn-large" })
         }
-<div class="table">
-
-    <ul id="horizontal-list">
+<div class="row">
 
         @foreach (var item in Model)
-            {
-            <li>
-                <a href='@Url.Action("Details", new { @id = item.Id })'>
-                    <img src="~/Resources/@item.Photo" alt="Zdjęcie" height="200" width="200" />
-                </a><br />
-                @Html.DisplayFor(modelItem => item.Name)<br />
-                @if (Context.User.IsInRole("Admin"))
-                {
-                    @Html.ActionLink("Edytuj      ", "Edit", new { id = item.Id })
-                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
-                }
+        {
+            <div class="col-md-3">
+                <div class="col-md-5">
+                    <a href='@Url.Action("Details", new { @id = item.Id })'>
+                        <img src="~/Resources/@item.Photo" alt="Zdjęcie" height="200" width="200" />
+                    </a><br />
+                    @Html.DisplayFor(modelItem => item.Name)<br />
+                    @if (Context.User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edytuj      ", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                    }
 
-            </li>
-        }
-    </ul>
+                    </div>
+                </div>
+                }
+   
 </div>
 <br />
 @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@

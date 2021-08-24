@@ -8,7 +8,7 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="row">
         <dd>
             <img src="~/Resources/@Model.Photo" alt="Zdj" height="30%" width="30%" />
         </dd>
@@ -31,28 +31,28 @@
         <dt>
             Produkty:
         </dt>
-        <dd>
-            <table class="table">
-                <ul id="horizontal-list">
+        <div class="row">
+            <div class="col-md-9">
+                @foreach (var item in Model.Product)
+                {
 
-                    @foreach (var item in Model.Product)
-            {
-                        <li>
-                                <img src="~/Resources/@item.Photo" alt="Zdjęcie" height="300" width="200" />
-                            <br />
-                            @Html.DisplayFor(modelItem => item.Producer.Name)
-                            @Html.DisplayFor(modelItem => item.Name)<br />
-                            @Html.DisplayFor(modelItem => item.Price) zł
-                            <a href='@Url.Action( "OrderNow", "Carts", new { id = item.Id }, null)'>
-                                <img src='@Url.Content("~/Resources/cart.png")' />
-                            </a>
-                        </li>
-                    }
-                </ul>
-            </table>
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Powrót", "Index", null, new { @class = "btn btn-primary btn-large" })
-</p>
+                    <div class="col-md-3">
+                        <img src="~/Resources/@item.Photo" alt="Zdjęcie" height="300" width="200" />
+                        <br />
+                        @Html.DisplayFor(modelItem => item.Producer.Name)
+                        @Html.DisplayFor(modelItem => item.Name)<br />
+                        @Html.DisplayFor(modelItem => item.Price) zł
+                        <a href='@Url.Action( "OrderNow", "Carts", new { id = item.Id }, null)'>
+                            <img src='@Url.Content("~/Resources/cart.png")' />
+                        </a>
+                    </div>
+
+
+                }
+
+            </div>
+        </div>
+
+        <p>
+            @Html.ActionLink("Powrót", "Index", null, new { @class = "btn btn-primary btn-large" })
+        </p>
